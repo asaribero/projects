@@ -1,0 +1,139 @@
+<div class="ml-15p">
+  <div class="w-full max-w-full px-3 mb-6  mx-auto">
+    <div class="relative flex-[1_auto] flex flex-col break-words min-w-0 bg-clip-border rounded-[.95rem] bg-white m-5">
+      <div
+        class="relative flex flex-col min-w-0 break-words border border-dashed bg-clip-border rounded-2xl border-stone-200 bg-light/30">
+        <!-- card body  -->
+        <div class="flex-auto block py-8 pt-6 px-9">
+          <!-- card header -->
+          <div class="px-9 pt-6 py-8 flex justify-between items-stretch flex-wrap min-h-[70px] pb-0 bg-transparent">
+            <h3 class="flex flex-col items-start justify-center m-2 ml-0 font-medium text-xl/tight text-dark">
+              <span class="mr-3 font-semibold text-dark">Proyectos finales</span>
+              <span class="mt-1 font-medium text-secondary-dark text-lg/normal">Lista de proyectos de grado
+                estudiantes</span>
+            </h3>
+            <div class="relative flex flex-wrap items-center my-2">
+              <!-- <button
+                class="flex items-center justify-center w-1/2 px-5 py-2 text-sm text-gray-700 transition-colors duration-200 bg-white border rounded-lg gap-x-2 sm:w-auto dark:hover:bg-gray-800 dark:bg-gray-900 hover:bg-gray-100 dark:text-gray-200 dark:border-gray-700">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g clip-path="url(#clip0_3098_154395)">
+                    <path
+                      d="M13.3333 13.3332L9.99997 9.9999M9.99997 9.9999L6.66663 13.3332M9.99997 9.9999V17.4999M16.9916 15.3249C17.8044 14.8818 18.4465 14.1806 18.8165 13.3321C19.1866 12.4835 19.2635 11.5359 19.0351 10.6388C18.8068 9.7417 18.2862 8.94616 17.5555 8.37778C16.8248 7.80939 15.9257 7.50052 15 7.4999H13.95C13.6977 6.52427 13.2276 5.61852 12.5749 4.85073C11.9222 4.08295 11.104 3.47311 10.1817 3.06708C9.25943 2.66104 8.25709 2.46937 7.25006 2.50647C6.24304 2.54358 5.25752 2.80849 4.36761 3.28129C3.47771 3.7541 2.70656 4.42249 2.11215 5.23622C1.51774 6.04996 1.11554 6.98785 0.935783 7.9794C0.756025 8.97095 0.803388 9.99035 1.07431 10.961C1.34523 11.9316 1.83267 12.8281 2.49997 13.5832"
+                      stroke="currentColor" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round" />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_3098_154395">
+                      <rect width="20" height="20" fill="white" />
+                    </clipPath>
+                  </defs>
+                </svg>
+
+                <span>Import</span>
+              </button> -->
+
+              <a [routerLink]="['/dashboard/projects/create']"
+                class="flex items-center justify-center w-1/2 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-blue-500 rounded-lg shrink-0 sm:w-auto gap-x-2 hover:bg-blue-600 dark:hover:bg-blue-500 dark:bg-blue-600">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                  stroke="currentColor" class="w-5 h-5">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+
+                <span>Nuevo</span>
+              </a>
+            </div>
+          </div>
+          <!-- end card header -->
+          <div class="overflow-hidden rounded-lg border border-gray-200 shadow-md m-5">
+            <table class="w-full border-collapse bg-white text-left text-sm text-gray-500">
+              <thead class="bg-gray-50">
+                <tr class="font-semibold text-[0.95rem]">
+                  <th scope="col" class="px-6 py-4 font-medium text-gray-900">ID</th>
+                  <th scope="col" class="px-6 py-4 font-medium text-gray-900">TITULO</th>
+                  <th scope="col" class="px-6 py-4 font-medium text-gray-900">RESUMEN</th>
+                  <th scope="col" class="px-6 py-4 font-medium text-gray-900">CATEGORIA</th>
+                  <th scope="col" class="px-6 py-4 font-medium text-gray-900">ESTADO</th>
+                  <th scope="col" class="px-6 py-4 font-medium text-gray-900">FECHA INICIO</th>
+                  <th scope="col" class="px-6 py-4 font-medium text-gray-900">FECHA FIN</th>
+                  <th scope="col" class="px-6 py-4 font-medium text-gray-900"></th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-100 border-t border-gray-100">
+                @for (item of projects; track $index) {
+                <tr class="hover:bg-gray-50">
+                  <td class="px-6 py-4">
+                    {{ item['idProyecto'] }}
+                  </td>
+                  <td class="px-6 py-4">
+                    <span class="font-semibold text-light-inverse text-md/normal">{{ item.titulo }}</span>
+                  </td>
+                  <td class="px-6 py-4">
+                    <span class="font-semibold text-light-inverse text-md/normal">
+                      {{ item.resumen }}
+                    </span>
+                  </td>
+                  <td class="px-6 py-4">
+                    <span class="font-semibold text-light-inverse text-md/normal">
+                      {{ item.idCategoria }} </span>
+                  </td>
+                  <td class="px-6 py-4">
+                    <span
+                      class="text-center align-baseline inline-flex px-4 py-3 mr-auto items-center font-semibold text-[.95rem] leading-none text-primary bg-primary-light rounded-lg">
+                      {{ item.estado }}</span>
+                  </td>
+                  <td class="px-6 py-4">
+                    <span
+                      class="text-center align-baseline inline-flex px-4 py-3 mr-auto items-center font-semibold text-[.95rem] leading-none text-primary bg-primary-light rounded-lg">
+                      {{ item.fechaInicio }} </span>
+                  </td>
+                  <td class="px-6 py-4">
+                    <span
+                      class="text-center align-baseline inline-flex px-4 py-3 mr-auto items-center font-semibold text-[.95rem] leading-none text-primary bg-primary-light rounded-lg">
+                      {{ item.fechaFin }} </span>
+                  </td>
+                  <td class="px-6 py-4">
+                    <div class="flex justify-end gap-4">
+                      <a x-data="{ tooltip: 'Delete' }" [routerLink]="['/dashboard/user', item['idProyecto']]">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                          stroke="currentColor" class="h-6 w-6" x-tooltip="tooltip">
+                          <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+                        </svg>
+                      </a>
+                      <a x-data="{ tooltip: 'Edite' }" [routerLink]="['/dashboard/user', item['idProyecto']]">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                          stroke="currentColor" class="h-6 w-6" x-tooltip="tooltip">
+                          <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
+                        </svg>
+                      </a>
+                      @if(item.idAsignacion == null){
+                        <a x-data="{ tooltip: 'Asignacion proyecto' }" [routerLink]="['/dashboard/projects/assign', item['idProyecto']]">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="h-6 w-6" x-tooltip="tooltip">
+                            <path
+                              d="M12 12c2.28 0 4-1.72 4-4s-1.72-4-4-4-4 1.72-4 4 1.72 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                          </svg>
+                        </a>
+                      }
+                      @else{
+                        <a x-data="{ tooltip: 'User Profile' }" [routerLink]="['/dashboard/projects/viewAssign', item['idProyecto']]">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="h-6 w-6 text-green-500" x-tooltip="tooltip">
+                            <path
+                              d="M12 12c2.28 0 4-1.72 4-4s-1.72-4-4-4-4 1.72-4 4 1.72 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                          </svg>
+                        </a>
+                      }
+                    </div>
+                  </td>
+                </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

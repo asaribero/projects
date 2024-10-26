@@ -1,0 +1,181 @@
+<link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.4/dist/flowbite.min.css" />
+<div class="ml-15p">
+    <div class="w-full max-w-full px-3 mb-6  mx-auto">
+        <div
+            class="relative flex-[1_auto] flex flex-col break-words min-w-0 bg-clip-border rounded-[.95rem] bg-white m-5">
+            <div
+                class="relative flex flex-col min-w-0 break-words border border-dashed bg-clip-border rounded-2xl border-stone-200 bg-light/30">
+                <!-- card body  -->
+                <div class="flex-auto block py-8 pt-6 px-9">
+                    <!-- card header -->
+                    <div
+                        class="px-9 pt-6 py-8 flex justify-between items-stretch flex-wrap min-h-[70px] pb-0 bg-transparent">
+                        <h3
+                            class="flex flex-col items-start justify-center m-2 ml-0 font-medium text-xl/tight text-dark">
+                            <span class="mr-3 font-semibold text-dark">Ver</span>
+                            <span class="mt-1 font-medium text-secondary-dark text-lg/normal">Asignación docente</span>
+                        </h3>
+                        <div class="relative flex flex-wrap items-center my-2">
+                            <a [routerLink]="['/dashboard/projects']"
+                                class="flex items-center justify-center w-1/2 px-5 py-2 text-sm text-gray-700 transition-colors duration-200 bg-white border rounded-lg gap-x-2 sm:w-auto dark:hover:bg-gray-800 dark:bg-gray-900 hover:bg-gray-100 dark:text-gray-200 dark:border-gray-700">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <g clip-path="url(#clip0_3098_154395)">
+                                        <path
+                                            d="M13.3333 13.3332L9.99997 9.9999M9.99997 9.9999L6.66663 13.3332M9.99997 9.9999V17.4999M16.9916 15.3249C17.8044 14.8818 18.4465 14.1806 18.8165 13.3321C19.1866 12.4835 19.2635 11.5359 19.0351 10.6388C18.8068 9.7417 18.2862 8.94616 17.5555 8.37778C16.8248 7.80939 15.9257 7.50052 15 7.4999H13.95C13.6977 6.52427 13.2276 5.61852 12.5749 4.85073C11.9222 4.08295 11.104 3.47311 10.1817 3.06708C9.25943 2.66104 8.25709 2.46937 7.25006 2.50647C6.24304 2.54358 5.25752 2.80849 4.36761 3.28129C3.47771 3.7541 2.70656 4.42249 2.11215 5.23622C1.51774 6.04996 1.11554 6.98785 0.935783 7.9794C0.756025 8.97095 0.803388 9.99035 1.07431 10.961C1.34523 11.9316 1.83267 12.8281 2.49997 13.5832"
+                                            stroke="currentColor" stroke-width="1.67" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clip0_3098_154395">
+                                            <rect width="20" height="20" fill="white" />
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+
+                                <span>Atras</span>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- end card header -->
+                    <div class="overflow-hidden rounded-lg border border-gray-200 shadow-md m-5 p-5">
+                        <div
+                            class="relative flex flex-col items-center rounded-[20px] w-[700px] max-w-[95%] mx-auto bg-white bg-clip-border shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-white dark:!shadow-none p-3">
+                            <div class="mt-2 mb-8 w-full">
+                                <h4 class="px-2 text-xl font-bold text-navy-700 dark:text-white">
+                                    {{ asignacionProject['titulo'] }}
+                                </h4>
+                                <p class="mt-2 px-2 text-base text-gray-600">
+                                    {{ asignacionProject['resumen'] }}
+                                </p>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4 px-2 w-full">
+                                <div
+                                    class="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
+                                    <p class="text-sm text-gray-600">Fecha inicio</p>
+                                    <p class="text-base font-medium text-navy-700 dark:text-white">
+                                        {{ asignacionProject['fechaInicio'] }}
+                                    </p>
+                                </div>
+
+                                <div
+                                    class="flex flex-col justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
+                                    <p class="text-sm text-gray-600">Fecha fin</p>
+                                    <p class="text-base font-medium text-navy-700 dark:text-white">
+                                        {{ asignacionProject['fechaFin'] }}
+                                    </p>
+                                </div>
+
+                                <div
+                                    class="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
+                                    <p class="text-sm text-gray-600">Categoria</p>
+                                    <p class="text-base font-medium text-navy-700 dark:text-white">
+                                        {{ asignacionProject['nombre_categoria'] }}
+                                    </p>
+                                </div>
+
+                                <div
+                                    class="flex flex-col justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
+
+                                </div>
+
+                                <div
+                                    class="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
+                                    <p class="text-sm text-gray-600">Docente</p>
+                                    <p class="text-base font-medium text-navy-700 dark:text-white">
+                                        {{ asignacionProject['nombre_docente'] }}
+                                    </p>
+                                </div>
+
+                                <div
+                                    class="flex flex-col justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
+                                    <p class="text-sm text-gray-600">Estado</p>
+                                    <p class="text-base font-medium text-navy-700 dark:text-white">
+                                        {{ asignacionProject['nombre_estado'] }}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="mt-2 mb-8 w-full">
+                                <h4 class="px-2 text-xl font-bold text-navy-700 dark:text-white">
+                                    Documentos
+                                </h4>
+                            </div>
+                            <!-- scroll area -->
+                            <section class="h-full overflow-auto p-8 w-full h-full flex flex-col">
+                                <header
+                                    class="border-dashed border-2 border-gray-400 py-12 flex flex-col justify-center items-center">
+                                    <p class="mb-3 font-semibold text-gray-900 flex flex-wrap justify-center">
+                                        <span>Drag and drop your</span>&nbsp;<span>files anywhere or</span>
+                                    </p>
+                                    <input
+                                        class="mt-2 rounded-sm px-3 py-1 bg-gray-200 hover:bg-gray-300 focus:shadow-outline focus:outline-none"
+                                        id="file_input" (change)="onFileSelected($event)" type="file">
+                                </header>
+                            </section>
+                            <!-- sticky footer -->
+                            <footer class="flex justify-end px-8 pb-8 pt-4">
+                                <button id="submit" (click)="uploadFile()"
+                                    class="rounded-sm px-3 py-1 bg-blue-700 hover:bg-blue-500 text-white focus:shadow-outline focus:outline-none">
+                                    Guardar
+                                </button>
+                            </footer>
+                            <div class="mt-2 mb-8 w-full">
+                                <table class="w-full border-collapse bg-white text-left text-sm text-gray-500">
+                                    <thead class="bg-gray-50">
+                                        <tr class="font-semibold text-[0.95rem]">
+                                            <th scope="col" class="px-6 py-4 font-medium text-gray-900">Id</th>
+                                            <th scope="col" class="px-6 py-4 font-medium text-gray-900">Nombre
+                                                archivo
+                                            </th>
+                                            <th scope="col" class="px-6 py-4 font-medium text-gray-900"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-gray-100 border-t border-gray-100">
+                                        @if(documentosProject != 'No se encontro información requerida'){
+                                        @for (item of documentosProject; track $index) {
+                                        <tr class="hover:bg-gray-50">
+                                            <td class="px-6 py-4">
+                                                {{ item['idDocumento'] }}
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                <span class="font-semibold text-light-inverse text-md/normal">
+                                                    {{ item['nombreArchivo'] }}</span>
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                <div class="flex justify-end gap-4">
+                                                    <a x-data="{ tooltip: 'Edite' }"
+                                                        [routerLink]="['/dashboard/projects/reviewDocument', item['idDocumento']]">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                            viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                            class="h-6 w-6" x-tooltip="tooltip">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
+                                                        </svg>
+                                                    </a>
+                                                    <a x-data="{ tooltip: 'Edite' }"
+                                                    download
+                                                        href="{{item['rutaArchivo']}}">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v12m0 0l-3-3m3 3l3-3m-3 3V4m0 16v4m0 0H8m4 0h4"/>
+                                                          
+                                                        </svg>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        }
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@if (showModal == true) {
+<app-modal title="{{textModal}}" content="{{textContent}}" routerLinkBtn1="" textBtn1="" textBtn2="Cerrar">
+</app-modal>
+}

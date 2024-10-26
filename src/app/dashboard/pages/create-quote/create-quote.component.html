@@ -1,0 +1,34 @@
+<div class="max-w-md mx-auto p-8 bg-white rounded-md shadow-md">
+    <h2 class="text-2xl font-semibold mb-6">Nueva cita</h2>
+    <form>
+        <!-- <div class="mb-4">
+            <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Nombre</label>
+            <input type="text" id="name" name="name" [(ngModel)]="quoteUpObj.name" placeholder="John Doe" required
+                class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500" readonly>
+        </div> -->
+        <div class="mb-4">
+            <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Estilista</label>
+            <select name="estilista" id="estilista" [(ngModel)]="quoteUpObj.estilista"  class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+                <option value="" default>Seleccione..</option>
+                <option value="Yeison Vargas" >Yeison Vargas</option>
+                <option value="Sandra Velazques" >Sandra Velazques</option>
+            </select>
+        </div>
+        <div class="mb-4">
+            <label for="fecha_reserva" class="block text-gray-700 text-sm font-bold mb-2">Fecha de reserva</label>
+            <input type="datetime-local" id="fecha_reserva" name="fecha_reserva" [(ngModel)]="quoteUpObj.fecha_reserva" class="w-full p-3 py-2 border rounded-md focus:outline-none focus:border-blue-500" required>
+        </div>
+        <div class="mb-4">
+            <label for="peluqueria" class="block text-gray-700 text-sm font-bold mb-2">Sede Peluqueria</label>
+            <select name="peluqueria" id="peluqueria" [(ngModel)]="quoteUpObj.peluqueria" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+                <option value="" default>Seleccione..</option>
+                <option value="Sede A" >Sede A</option>
+                <option value="Sede B" >Sede B</option>
+            </select>
+        </div>
+        <button type="button" (click)="saveQuote()" 
+            class="bg-blue-500 hover:bg-blue-600 text-black hover:text-white font-semibold rounded-md py-2 px-4 w-full">
+            Guardar
+        </button>
+    </form>
+</div>
