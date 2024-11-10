@@ -19,9 +19,10 @@ export default class LoginComponent {
     const email = this.loginObj.email;
     const password = this.loginObj.password;
     this.user = {
-      userName: email,
-      pass: password 
+      nombre: email,
+      contrasena: password 
     }
+    console.log(this.user)
     this.authService.singin(this.user).subscribe( (res:any) => {
       localStorage.setItem('token',res.token);
       this.router.navigate(['dashboard/projects']);

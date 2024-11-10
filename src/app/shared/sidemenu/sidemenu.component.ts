@@ -17,12 +17,18 @@ export class SidemenuComponent {
   .filter( route => route && route.path)
   .filter( route => !route.path?.includes(':'));
   loggedUser: any;
+  user:any;
 
   constructor(private router: Router,@Inject(PLATFORM_ID) private platformId: Object) {
     if (isPlatformBrowser(this.platformId)) {
       const token = localStorage.getItem('token');
+
       if (token) {
         this.loggedUser = jwtDecode(token) as any;
+        this.user = {
+          userName: this.loggedUser.nombre,
+          roleId:  this.loggedUser.rol
+        }
       } 
     }
   }

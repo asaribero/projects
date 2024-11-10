@@ -15,7 +15,7 @@
                             <span class="mt-1 font-medium text-secondary-dark text-lg/normal">Lista de usuarios</span>
                         </h3>
                         <div class="relative flex flex-wrap items-center my-2">
-                            <a [routerLink]="['/dashboard/projects/user']"
+                            <a [routerLink]="['/dashboard/user/create']"
                                 class="flex items-center justify-center w-1/2 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-blue-500 rounded-lg shrink-0 sm:w-auto gap-x-2 hover:bg-blue-600 dark:hover:bg-blue-500 dark:bg-blue-600">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
@@ -56,7 +56,7 @@
                                         </td>
                                         <td class="px-6 py-4">
                                             <span class="font-semibold text-light-inverse text-md/normal">
-                                                {{ item.rol }} </span>
+                                                {{ item.rol_name }} </span>
                                         </td>
                                         <td class="px-6 py-4">
                                             <div class="flex justify-end gap-4">
@@ -70,7 +70,7 @@
                                                     </svg>
                                                 </a>
                                                 <a x-data="{ tooltip: 'Edite' }"
-                                                    [routerLink]="['/dashboard/user', item['idUsuario']]">
+                                                    [routerLink]="['/dashboard/user/edit', item['idUsuario']]">
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                         stroke-width="1.5" stroke="currentColor" class="h-6 w-6"
                                                         x-tooltip="tooltip">
@@ -81,6 +81,8 @@
                                             </div>
                                         </td>
                                     </tr>
+                                } @empty {
+                                    <h3>Cargando información</h3>
                                 }
                             </tbody>
                         </table>

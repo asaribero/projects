@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { Router } from 'express';
 import { ProjectsService } from '../../../services/projects/projects.service';
 import { FormsModule } from '@angular/forms';
 import { RouterLink, RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { ModalComponent } from '../../../shared/modal/modal/modal.component';
 import { SwitchService } from '../../../services/modal/switch.service';
+import { jwtDecode } from 'jwt-decode';
 
 @Component({
   selector: 'app-final-projects',
@@ -16,7 +17,21 @@ import { SwitchService } from '../../../services/modal/switch.service';
 })
 export default class FinalProjectsComponent {
   projects: any;
-  constructor(private projectsService: ProjectsService,private modalSS:SwitchService){}
+  loggedUser: any;
+  user:any;
+  constructor(@Inject(PLATFORM_ID) private platformId: Object,private projectsService: ProjectsService,private modalSS:SwitchService){
+    if (isPlatformBrowser(this.platformId)) {
+      const token = localStorage.getItem('token');
+
+      if (token) {
+        this.loggedUser = jwtDecode(token) as any;
+        this.user = {
+          userName: this.loggedUser.nombre,
+          roleId:  this.loggedUser.rol
+        }
+      } 
+    }
+  }
   ngOnInit(): void {
     // Cargar los proyectos para visualizarlos en la tabla
     this.cargarProyectos();

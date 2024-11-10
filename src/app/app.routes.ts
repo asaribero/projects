@@ -11,16 +11,26 @@ export const routes: Routes = [
         canActivate:[authGuard],
         children: [
             {           
-                path: 'user/:id',
-                title: 'Ver usuario',
-                loadComponent : () => import('./dashboard/pages/user/user.component'),
-            },
-            {           
                 path: 'users',
                 title: 'Usuarios',
                 loadComponent : () => import('./dashboard/pages/users/users.component'),
                 canActivate:[roleGuard],
                 data: {expectedRole:'1'}
+            },
+            {           
+                path: 'user/create',
+                title: 'Crear usuario',
+                loadComponent : () => import('./dashboard/pages/user-form/user-form.component'),
+            },
+            {           
+                path: 'user/edit/:id',
+                title: 'Editar usuario',
+                loadComponent : () => import('./dashboard/pages/user-form/user-form.component'),
+            },
+            {           
+                path: 'user/:id',
+                title: 'Ver usuario',
+                loadComponent : () => import('./dashboard/pages/user/user.component'),
             },
             {           
                 path: 'projects',

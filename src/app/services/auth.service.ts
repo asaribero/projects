@@ -14,7 +14,7 @@ export class AuthService {
   constructor(@Inject(PLATFORM_ID) private platformId: Object) { }
 
   singin(user:any){
-    return this.http.post(`${this.URL}/user/singin`,user);
+    return this.http.post(`${this.URL}/user/signin`,user);
   }
 
   isAuth() {
