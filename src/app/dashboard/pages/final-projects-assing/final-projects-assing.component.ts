@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ModalComponent } from '../../../shared/modal/modal/modal.component';
 import { FormsModule } from '@angular/forms';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ProjectsService } from '../../../services/projects/projects.service';
 import { UsersService } from '../../../services/users/users.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-final-projects-assing',
@@ -13,6 +14,7 @@ import { UsersService } from '../../../services/users/users.service';
   templateUrl: './final-projects-assing.component.html',
 })
 export default class FinalProjectsAssingComponent {
+  private router = inject(Router);
   saveObj: SaveModel = new SaveModel();
   textModal: string = '';
   textContent: string = '';
@@ -49,27 +51,46 @@ export default class FinalProjectsAssingComponent {
   }
 
   nuevaAsignacion(): void {
-    if(this.saveObj.idUsuario != 0){
+    if (this.saveObj.idUsuario !== 0) {
       let asignacion = {
-        idUsuario : this.saveObj.idUsuario,
+        idUsuario: this.saveObj.idUsuario,
         idProyecto: this.idProyecto,
-        rol:this.saveObj.rol
+        rol: this.saveObj.rol
       };
-
-      this.projectsService.guardarAsignacionProyecto(asignacion).subscribe((res: any) => {
-          this.openDialog(res.status);
-      });
-    }else{
-      this.openDialog('No pueden haber campos vacios');
+  
+      this.projectsService.guardarAsignacionProyecto(asignacion).subscribe(
+        (res: any) => {
+          this.openDialog(res.status, true);
+        },
+        (error) => {
+          this.openDialog('Error al guardar la asignación. Intente de nuevo.', false);
+        }
+      );
+    } else {
+      this.openDialog('No pueden haber campos vacíos', false);
     }
   }
-  openDialog(message: string): void {
-    this.textModal = message;
-    this.textContent = message;
-    this.routerLinkBtn1 = '';
-    this.textBtn1 = '';
-    this.textBtn2 = '';
-    this.showModal = true;
+  
+  openDialog(message: string, isSuccess: boolean): void {
+    if (isSuccess) {
+      Swal.fire({
+        icon: 'success',
+        title: 'Éxito',
+        text: message,
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'Aceptar'
+      }).then(() => {
+        this.router.navigate(['/dashboard/projects']);
+      });
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: message,
+        confirmButtonColor: '#d33',
+        confirmButtonText: 'Cerrar'
+      });
+    }
   }
 }
 export class SaveModel {

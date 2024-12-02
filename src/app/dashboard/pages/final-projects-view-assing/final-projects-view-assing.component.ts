@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { ProjectsService } from '../../../services/projects/projects.service';
 import { HttpClient } from '@angular/common/http';
 import { SwitchService } from '../../../services/modal/switch.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-final-projects-view-assing',
@@ -51,22 +52,48 @@ export default class FinalProjectsViewAssingComponent {
     if (this.selectedFile) {
       const formData = new FormData();
       formData.append('file', this.selectedFile, this.selectedFile.name);
-      console.log(formData)
       this.http.post('http://localhost:3000/projects/upload', formData).subscribe(
         (response: any) => {
           this.saveDocumentProject(
             { pathOuput: response.pathOuput },
             { nameDocument: response.nameDocument }
           );
+  
+          // Mostrar alerta de éxito al cargar el archivo
+          Swal.fire({
+            icon: 'success',
+            title: '¡Archivo subido!',
+            text: 'El archivo se ha subido correctamente.',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Aceptar'
+          });
         },
         (error) => {
           this.openDialog('Error al guardar el archivo');
           console.error('Error al guardar el archivo', error);
+  
+          // Mostrar alerta de error
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Hubo un problema al subir el archivo. Intente de nuevo.',
+            confirmButtonColor: '#d33',
+            confirmButtonText: 'Cerrar'
+          });
         }
       );
+    } else {
+      // Mostrar alerta si no hay archivo seleccionado
+      Swal.fire({
+        icon: 'warning',
+        title: 'Sin archivo',
+        text: 'Debe seleccionar un archivo para subir.',
+        confirmButtonColor: '#f0ad4e',
+        confirmButtonText: 'Entendido'
+      });
     }
   }
-
+  
   saveDocumentProject(pathOuput: any, nameDocument: any) {
     let dataInsert = {
       idProyecto: this.idProyecto,
@@ -79,6 +106,15 @@ export default class FinalProjectsViewAssingComponent {
       this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
         this.router.navigate(['dashboard/projects/viewAssign', this.idProyecto]);
         this.openDialog(res.status);
+  
+        // Mostrar alerta de éxito al guardar el documento
+        Swal.fire({
+          icon: 'success',
+          title: '¡Documento guardado!',
+          text: 'El documento se ha guardado correctamente en el proyecto.',
+          confirmButtonColor: '#3085d6',
+          confirmButtonText: 'Aceptar'
+        });
       });
     });
   }
