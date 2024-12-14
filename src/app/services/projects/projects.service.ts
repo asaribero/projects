@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class ProjectsService {
   private http = inject(HttpClient);
   private jwtHelper = inject(JwtHelperService);
-  private URL = 'http://localhost:3000';
+  private URL = 'http://172.179.241.129:3000';
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) { }
 

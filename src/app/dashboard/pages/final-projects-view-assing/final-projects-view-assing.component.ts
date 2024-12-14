@@ -52,7 +52,7 @@ export default class FinalProjectsViewAssingComponent {
       const formData = new FormData();
       formData.append('file', this.selectedFile, this.selectedFile.name);
       console.log(formData)
-      this.http.post('http://localhost:3000/projects/upload', formData).subscribe(
+      this.http.post('http://172.179.241.129:3000/projects/upload', formData).subscribe(
         (response: any) => {
           this.saveDocumentProject(
             { pathOuput: response.pathOuput },
