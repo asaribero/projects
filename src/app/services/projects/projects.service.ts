@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable, PLATFORM_ID, inject } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { map, Observable } from 'rxjs';
-import { ProjectResponse } from '../../interfaces/req-response';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -23,10 +22,7 @@ export class ProjectsService {
   }
 
   obtenerProyecto(idProyecto:any){
-    return this.http.get<ProjectResponse>(`${this.URL}/projects/getProject/${idProyecto}`)
-    .pipe(
-      map(resp => resp.data)
-    );
+    return this.http.post(`${this.URL}/projects/getProject`,idProyecto);
   }
 
   guardarAsignacionProyecto(asignacion:any){
@@ -51,15 +47,5 @@ export class ProjectsService {
 
   obtenerRevisionesDocumento(idDocumento:any){
     return this.http.post(`${this.URL}/projects/getRevisionesDocumento`,idDocumento);
-  }
-
-  // Actualizar un proyecto existente
-  updateProject(idProyecto: string, project: any): Observable<any> {
-    return this.http.put(`${this.URL}/projects/update/${idProyecto}`, project);
-  }
-
-  // Elimianr un proyecto existente
-  deleteProject(idProyecto: string): Observable<any> {
-    return this.http.delete(`${this.URL}/projects/delete/${idProyecto}`);
   }
 }

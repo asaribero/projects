@@ -47,84 +47,95 @@
           <!-- end card header -->
           <div class="overflow-hidden rounded-lg border border-gray-200 shadow-md m-5">
             <table class="w-full border-collapse bg-white text-left text-sm text-gray-500">
-              <!-- Encabezados de tabla -->
-              <thead class="bg-gray-100 text-gray-800">
+              <thead class="bg-gray-50">
                 <tr class="font-semibold text-[0.95rem]">
-                  <th scope="col" class="px-6 py-4 font-medium">ID</th>
-                  <th scope="col" class="px-6 py-4 font-medium">TITULO</th>
-                  <th scope="col" class="px-6 py-4 font-medium">RESUMEN</th>
-                  <th scope="col" class="px-6 py-4 font-medium">CATEGORIA</th>
-                  <th scope="col" class="px-6 py-4 font-medium">ESTADO</th>
-                  <th scope="col" class="px-6 py-4 font-medium">FECHA INICIO</th>
-                  <th scope="col" class="px-6 py-4 font-medium text-right"></th>
+                  <th scope="col" class="px-6 py-4 font-medium text-gray-900">ID</th>
+                  <th scope="col" class="px-6 py-4 font-medium text-gray-900">TITULO</th>
+                  <th scope="col" class="px-6 py-4 font-medium text-gray-900">RESUMEN</th>
+                  <th scope="col" class="px-6 py-4 font-medium text-gray-900">CATEGORIA</th>
+                  <th scope="col" class="px-6 py-4 font-medium text-gray-900">ESTADO</th>
+                  <th scope="col" class="px-6 py-4 font-medium text-gray-900">FECHA INICIO</th>
+                  <th scope="col" class="px-6 py-4 font-medium text-gray-900"></th>
                 </tr>
               </thead>
-          
-              <!-- Cuerpo de la tabla -->
-              <tbody class="divide-y divide-gray-200">
+              <tbody class="divide-y divide-gray-100 border-t border-gray-100">
                 @for (item of projects; track $index) {
-                  <tr class="hover:bg-gray-50 transition duration-200">
-                    <td class="px-6 py-4 text-gray-700">{{ item['idProyecto'] }}</td>
-                    <td class="px-6 py-4 font-semibold text-gray-800">{{ item.titulo }}</td>
-                    <td class="px-6 py-4 text-gray-600">{{ item.resumen }}</td>
-                    <td class="px-6 py-4">{{ item.nombre_categoria }}</td>
-                    <td class="px-6 py-4">{{ item.nombre_estado }}</td>
-                    <td class="px-6 py-4">
-                      <span class="inline-flex px-3 py-1 text-sm font-semibold text-blue-600 bg-blue-100 rounded-lg">
-                        {{ item.fechaInicio | date: 'dd MMMM, yyyy' }}
-                      </span>
-                    </td>
-                    <td class="px-6 py-4 text-right">
-                      <div class="flex gap-3 justify-end">
-                        <!-- Botón Editar -->
-                        <a class="hover:text-blue-600 transition" [routerLink]="['/dashboard/projects/edit', item['idProyecto']]">
-                          <svg class="w-6 h-6 text-gray-500 hover:text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                              d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
-                          </svg>
-                        </a>
-                        <!-- Botón Eliminar -->
-                        <a class="hover:text-red-600 transition" (click)="onDelete(item['idProyecto'])">
-                          <svg class="w-6 h-6 text-gray-500 hover:text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                              d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
-                          </svg>
-                        </a>
-                        @if(item.idAsignacion == null){
-                          @if (user.roleId != 2) {
-                            <a x-data="{ tooltip: 'Asignacion proyecto' }"
-                              [routerLink]="['/dashboard/projects/assign', item['idProyecto']]">
-                              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                stroke="currentColor" class="h-6 w-6" x-tooltip="tooltip">
-                                <path
-                                  d="M12 12c2.28 0 4-1.72 4-4s-1.72-4-4-4-4 1.72-4 4 1.72 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
-                              </svg>
-                            </a>
-                          }@else{
-                            <a x-data="{ tooltip: 'Asignacion proyecto' }">
-                              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                stroke="currentColor" class="h-6 w-6 text-white" x-tooltip="tooltip">
-                                <path
-                                  d="M12 12c2.28 0 4-1.72 4-4s-1.72-4-4-4-4 1.72-4 4 1.72 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
-                              </svg>
-                            </a>
-                          }
+                <tr class="hover:bg-gray-50">
+                  <td class="px-6 py-4">
+                    {{ item['idProyecto'] }}
+                  </td>
+                  <td class="px-6 py-4">
+                    <span class="font-semibold text-light-inverse text-md/normal">{{ item.titulo }}</span>
+                  </td>
+                  <td class="px-6 py-4">
+                    <span class="font-semibold text-light-inverse text-md/normal">
+                      {{ item.resumen }}
+                    </span>
+                  </td>
+                  <td class="px-6 py-4">
+                    <span class="font-semibold text-light-inverse text-md/normal">
+                      {{ item.nombre_categoria }} </span>
+                  </td>
+                  <td class="px-6 py-4">
+                    <span class="font-semibold text-light-inverse text-md/normal">
+                      {{ item.nombre_estado }}</span>
+                  </td>
+                  <td class="px-6 py-4">
+                    <span
+                      class="text-center align-baseline inline-flex px-4 py-3 mr-auto items-center font-semibold text-[.95rem] leading-none text-primary bg-primary-light rounded-lg">
+                      {{ item.fechaInicio }} </span>
+                  </td>
+                  <td class="px-6 py-4">
+                    <div class="flex justify-end gap-4">
+                      @if (user.roleId != 3) {
+                      <a x-data="{ tooltip: 'Delete' }" [routerLink]="['/dashboard/user', item['idProyecto']]">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                          stroke="currentColor" class="h-6 w-6" x-tooltip="tooltip">
+                          <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+                        </svg>
+                      </a>
+                      <a x-data="{ tooltip: 'Edite' }" [routerLink]="['/dashboard/user', item['idProyecto']]">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                          stroke="currentColor" class="h-6 w-6" x-tooltip="tooltip">
+                          <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
+                        </svg>
+                      </a>
+                      }
+                      @if(item.idAsignacion == null){
+                        @if (user.roleId != 2) {
+                          <a x-data="{ tooltip: 'Asignacion proyecto' }"
+                            [routerLink]="['/dashboard/projects/assign', item['idProyecto']]">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                              stroke="currentColor" class="h-6 w-6" x-tooltip="tooltip">
+                              <path
+                                d="M12 12c2.28 0 4-1.72 4-4s-1.72-4-4-4-4 1.72-4 4 1.72 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                            </svg>
+                          </a>
+                        }@else{
+                          <a x-data="{ tooltip: 'Asignacion proyecto' }">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                              stroke="currentColor" class="h-6 w-6 text-white" x-tooltip="tooltip">
+                              <path
+                                d="M12 12c2.28 0 4-1.72 4-4s-1.72-4-4-4-4 1.72-4 4 1.72 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                            </svg>
+                          </a>
                         }
-                        @else{
-                        <a x-data="{ tooltip: 'User Profile' }"
-                          [routerLink]="['/dashboard/projects/viewAssign', item['idProyecto']]">
-                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="h-6 w-6 text-green-500" x-tooltip="tooltip">
-                            <path
-                              d="M12 12c2.28 0 4-1.72 4-4s-1.72-4-4-4-4 1.72-4 4 1.72 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
-                          </svg>
-                        </a>
-                        }
-                      </div>
-                    </td>
-                  </tr>
+                      }
+                      @else{
+                      <a x-data="{ tooltip: 'User Profile' }"
+                        [routerLink]="['/dashboard/projects/viewAssign', item['idProyecto']]">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                          stroke="currentColor" class="h-6 w-6 text-green-500" x-tooltip="tooltip">
+                          <path
+                            d="M12 12c2.28 0 4-1.72 4-4s-1.72-4-4-4-4 1.72-4 4 1.72 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                        </svg>
+                      </a>
+                      }
+                    </div>
+                  </td>
+                </tr>
                 }
               </tbody>
             </table>

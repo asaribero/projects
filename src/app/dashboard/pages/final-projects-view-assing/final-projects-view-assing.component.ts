@@ -6,7 +6,6 @@ import { CommonModule } from '@angular/common';
 import { ProjectsService } from '../../../services/projects/projects.service';
 import { HttpClient } from '@angular/common/http';
 import { SwitchService } from '../../../services/modal/switch.service';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-final-projects-view-assing',
@@ -25,7 +24,6 @@ export default class FinalProjectsViewAssingComponent {
   routerLinkBtn1: string = '';
   textBtn1: string = '';
   textBtn2: string = '';
-  private URL = 'http://172.179.241.129:3000';
   constructor(
     private route: ActivatedRoute,
     private projectsService: ProjectsService,
@@ -53,45 +51,19 @@ export default class FinalProjectsViewAssingComponent {
     if (this.selectedFile) {
       const formData = new FormData();
       formData.append('file', this.selectedFile, this.selectedFile.name);
-      console.log(formData);
-  
-      this.http.post(`${this.URL}/projects/upload`, formData).subscribe(
+      console.log(formData)
+      this.http.post('http://172.179.241.129:3000/projects/upload', formData).subscribe(
         (response: any) => {
           this.saveDocumentProject(
             { pathOuput: response.pathOuput },
             { nameDocument: response.nameDocument }
           );
-  
-          // Muestra la alerta de éxito
-          Swal.fire({
-            title: '¡Archivo subido!',
-            text: 'El archivo se ha subido exitosamente.',
-            icon: 'success',
-            confirmButtonText: 'Aceptar',
-            customClass: {
-              confirmButton: 'bg-blue-500 hover:bg-blue-600 text-white rounded-lg px-4 py-2',
-            }
-          });
         },
         (error) => {
-          // Muestra una alerta en caso de error
-          Swal.fire({
-            title: 'Error',
-            text: 'Ocurrió un error al subir el archivo.',
-            icon: 'error',
-            confirmButtonText: 'Aceptar'
-          });
+          this.openDialog('Error al guardar el archivo');
           console.error('Error al guardar el archivo', error);
         }
       );
-    } else {
-      // Alerta si no se selecciona archivo
-      Swal.fire({
-        title: 'Sin archivo',
-        text: 'Por favor, selecciona un archivo para subir.',
-        icon: 'warning',
-        confirmButtonText: 'Aceptar'
-      });
     }
   }
 
@@ -129,20 +101,5 @@ export default class FinalProjectsViewAssingComponent {
     this.textBtn1 = '';
     this.textBtn2 = '';
     this.showModal = true;
-  }
-
-  downloadFile(fileName: string): void {
-    const url = `${this.URL}/projects/download/${fileName}`; // URL del backend
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = fileName;
-  
-    // Simula el clic para iniciar la descarga
-    link.click();
-  
-    // Espera un tiempo para asegurar que la descarga comienza, luego redirige
-    setTimeout(() => {
-      this.router.navigate([`/dashboard/projects/viewAssign/${this.idProyecto}`]); // Ruta a la vista inicial
-    }, 1000); // Espera 1 segundo antes de redirigir
   }
 }

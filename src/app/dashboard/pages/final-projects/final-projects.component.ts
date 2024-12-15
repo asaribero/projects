@@ -7,7 +7,6 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { ModalComponent } from '../../../shared/modal/modal/modal.component';
 import { SwitchService } from '../../../services/modal/switch.service';
 import { jwtDecode } from 'jwt-decode';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-final-projects',
@@ -50,31 +49,5 @@ export default class FinalProjectsComponent {
 
   openModal() {
     this.showModal = true;
-  }
-
-  onDelete(idProyecto: string): void {
-    Swal.fire({
-      title: '¿Estás seguro?',
-      text: 'Esta acción no se puede deshacer',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#d33',
-      cancelButtonColor: '#3085d6',
-      confirmButtonText: 'Sí, eliminar',
-      cancelButtonText: 'Cancelar',
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.projectsService.deleteProject(idProyecto).subscribe(
-          () => {
-            Swal.fire('Eliminado', 'El proyecto ha sido eliminado correctamente', 'success');
-            this.cargarProyectos(); // Vuelve a cargar la lista de proyectos
-          },
-          (error) => {
-            console.error('Error al eliminar el proyecto:', error);
-            Swal.fire('Error', 'No se pudo eliminar el proyecto', 'error');
-          }
-        );
-      }
-    });
   }
 }
