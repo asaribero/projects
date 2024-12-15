@@ -38,7 +38,7 @@ export const routes: Routes = [
                 loadComponent : () => import('./dashboard/pages/final-projects/final-projects.component'),
             },
             {           
-                path: 'projects/edit',
+                path: 'projects/create',
                 title: 'Nuevo proyecto',
                 loadComponent : () => import('./dashboard/pages/final-projects-create/final-projects-create.component'),
             },
