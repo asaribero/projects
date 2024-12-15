@@ -152,12 +152,11 @@
                                                                 d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
                                                         </svg>
                                                     </a>
-                                                    <a x-data="{ tooltip: 'Edite' }"
-                                                    download
-                                                        href="{{item['rutaArchivo']}}">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
-                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v12m0 0l-3-3m3 3l3-3m-3 3V4m0 16v4m0 0H8m4 0h4"/>
-                                                          
+                                                    <a target="_blank" href="javascript:void(0)" (click)="downloadFile(item['nombreArchivo'])">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" 
+                                                                stroke="currentColor" class="w-6 h-6 text-blue-600 hover:text-blue-800">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                                                d="M12 4v12m0 0l-3-3m3 3l3-3m-3 3V4m0 16v4m0 0H8m4 0h4"/>
                                                         </svg>
                                                     </a>
                                                 </div>

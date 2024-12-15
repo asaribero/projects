@@ -95,6 +95,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/office-ui-fabric-core/dist/css/fabric.min.css",
               "src/styles.css"
             ],
             "scripts": []
