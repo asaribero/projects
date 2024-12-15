@@ -39,4 +39,9 @@ export class UsersService {
   obtenerUsuarios(): Observable<any> {
     return this.http.get(`${this.URL}/user`);
   }
+
+  // Elimianr un usuairo existente
+  deleteUser(idUsuario: string): Observable<any> {
+    return this.http.delete(`${this.URL}/user/delete/${idUsuario}`);
+  }
 }
